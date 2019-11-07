@@ -33,6 +33,13 @@
     <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <a class="button" href="javascript:startTimer()">start</a>
     <a class="button" href="javascript:resetTimer()">reset</a>
+
+    <audio id="warning_audio">
+      <source src="audio/warning.mp3" type="audio/mp3">
+    </audio>
+    <audio id="foul_audio">
+        <source src="audio/foul.mp3" type="audio/mp3">
+      </audio>
   </body>
 </html>
 <script>
@@ -43,19 +50,36 @@
 function startTimer(){
   var start = setInterval(updateClock, 1000);
 
-  var time = 29;
+  var time = 6;
 
   function updateClock() {
 
+    //Change Timer Text
     document.getElementById("clock_text").innerText = time;
     
+    //Sound Effect to be played at every second under 6
+    if(time < 6){
+      if(time == 0){
+        document.getElementById("foul_audio").play();
+      }
+      else{
+        document.getElementById("warning_audio").play();
+      }
+    }
+
+    //Decrease Time
     time--;
 
+    
+    
+
+    //Stop at 0
     if(time == -1){
       clearInterval(start);
-      document.getElementById("clock_text").innerText = 30;
+      
+      //Reset Timer to 30
+      setTimeout(function() { document.getElementById("clock_text").innerText = 30  }, 3000);
     }
-    console.log(time);
   }
 }
 </script>
