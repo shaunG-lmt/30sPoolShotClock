@@ -2,34 +2,60 @@
 <html lang="en">
   <head>
 
-    <!-- Basic Page Needs
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- Basic Page Needs ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <meta charset="utf-8">
     <title>Pool Shot Clocker</title>
     <meta name="description" content="'Pool Shot Clock', This is a webapplication for a 30 second clock for pool tournaments">
     <meta name="author" content="Shaun Gill">
 
-    <!-- Mobile Specific Metas –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- Mobile Specific Metas ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- FONT –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-    <!-- CSS –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- CSS ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Favicon –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- Favicon –– Circled 8 icon by Icons8, Source -> https://icons8.com/icons/set/8-circle -->
     <link rel="icon" type="image/png" href="images/favicon.png">
-    <!-- Circled 8 icon by Icons8, Source -> https://icons8.com/icons/set/8-circle -->
 
   </head>
   <body>
-    <!--Title –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!--Title ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <h1>30 Second Pool Shot Clock</h1>
+
+    <!--Timer Display ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <p id="clock_text">30</p>
+
+    <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <a class="button" href="javascript:startTimer()">start</a>
+    <a class="button" href="javascript:resetTimer()">reset</a>
   </body>
 </html>
 <script>
 
+// change time_text down til 0
+// play sound effect at 5 seconds
+
+function startTimer(){
+  var start = setInterval(updateClock, 1000);
+
+  var time = 29;
+
+  function updateClock() {
+
+    document.getElementById("clock_text").innerText = time;
+    
+    time--;
+
+    if(time == -1){
+      clearInterval(start);
+      document.getElementById("clock_text").innerText = 30;
+    }
+    console.log(time);
+  }
+}
 </script>
