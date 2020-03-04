@@ -31,8 +31,8 @@
     <p id="clock_text">30</p>
 
     <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-    <a class="button" href="javascript:startTimer()">start</a>
-    <a class="button" href="javascript:resetTimer()">reset</a>
+    <a id="start_button" class="button" href="javascript:startTimer()">start</a>
+    <a id="reset_button" class="button" href="javascript:resetTimer()">reset</a>
 
     <audio id="warning_audio">
       <source src="audio/warning.mp3" type="audio/mp3">
@@ -47,39 +47,44 @@
 // change time_text down til 0
 // play sound effect at 5 seconds
 
-function startTimer(){
+
+
+function startTimer()
+{
+  document.getElementById("start_button").style.visibility = "hidden";
   var start = setInterval(updateClock, 1000);
 
-  var time = 6;
+  var time = 2;
 
-  function updateClock() {
-
+  function updateClock() 
+  { 
     //Change Timer Text
     document.getElementById("clock_text").innerText = time;
     
     //Sound Effect to be played at every second under 6
-    if(time < 6){
-      if(time == 0){
+    if(time < 6)
+    {
+      if(time == 0)
+      {
         document.getElementById("foul_audio").play();
       }
-      else{
+      else
+      {
         document.getElementById("warning_audio").play();
       }
     }
-
     //Decrease Time
     time--;
 
-    
-    
-
-    //Stop at 0
-    if(time == -1){
+  //Stop at 0 
+    if(time == -1)
+    {
       clearInterval(start);
       
       //Reset Timer to 30
-      setTimeout(function() { document.getElementById("clock_text").innerText = 30  }, 3000);
+      setTimeout( function() { document.getElementById("clock_text").innerText = 30  }, 1500);
+
     }
   }
-}
+} 
 </script>
