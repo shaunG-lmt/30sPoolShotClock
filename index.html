@@ -32,6 +32,7 @@
 
     <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <a id="start_button" class="button" href="javascript:startTimer()">start</a>
+    <a id="start_button" class="button" href="javascript:pauseTimer()">pause</a>
     <a id="restart_button" class="button" href="javascript:restartTimer()">restart</a>
 
     <audio id="warning_audio">
@@ -65,6 +66,13 @@ function restartTimer()
   start = setInterval(updateClock, 1000);
 }
 
+function pauseTimer() 
+{
+  document.getElementById("start_button").style.visibility = "visible";
+
+  clearInterval(start);
+
+}
 function updateClock() 
 { 
   //Change timer text
