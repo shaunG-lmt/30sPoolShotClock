@@ -57,10 +57,12 @@ function startTimer()
 
 function restartTimer() 
 {  
+  
   time = 29;
 
   clearInterval(start);
 
+  document.getElementById("start_button").style.visibility = "hidden";
   document.getElementById("clock_text").innerText = 30;
 
   start = setInterval(updateClock, 1000);
@@ -71,7 +73,6 @@ function pauseTimer()
   document.getElementById("start_button").style.visibility = "visible";
 
   clearInterval(start);
-
 }
 function updateClock() 
 { 
