@@ -28,12 +28,27 @@
     <h1>30 Second Pool Shot Clock</h1>
 
     <!--Timer Display ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-    <p id="clock_text">30</p>
+    <div class="row">
+      <p id="clock_text">30<p>
+    </div>
 
+    <!--Match Length Input ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <div class="row">
+      <h1 id="matchlength_text">00:00:00</h1>
+    </div>
+    
     <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-    <a id="start_button" class="button" href="javascript:startTimer()">start</a>
-    <a id="start_button" class="button" href="javascript:pauseTimer()">pause</a>
-    <a id="restart_button" class="button" href="javascript:restartTimer()">restart</a>
+    <div class="row">
+      <a id="start_button" class="button" href="javascript:startTimer()">start</a>
+      <a id="start_button" class="button" href="javascript:pauseTimer()">pause</a>
+      <a id="restart_button" class="button" href="javascript:restartTimer()">restart shotclock</a>
+    </div>
+    
+
+    <!--Match Length Input ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <div class="row" id="matchlength_container">
+      Match Length: <input type="number" placeholder="Min(s)">
+    </div>    
 
     <audio id="warning_audio">
       <source src="audio/warning.mp3" type="audio/mp3">
@@ -42,39 +57,38 @@
         <source src="audio/foul.mp3" type="audio/mp3">
       </audio>
   </body>
-</html>
+</html> 
 <script>
+  var start;
+  var time = 29;
 
-var start;
-var time = 29;
+  function startTimer()
+  {
+    document.getElementById("start_button").style.visibility = "hidden";
+    document.getElementById("matchlength_container").style.visibility = "hidden";
+    document.getElementById("restart_button").style.visibility = "visible";
+    
+    start = setInterval(updateClock, 1000);
+  } 
+  function restartTimer() 
+  {  
+    
+    time = 29;
 
-function startTimer()
-{
-  document.getElementById("start_button").style.visibility = "hidden";
-  
-  start = setInterval(updateClock, 1000);
-} 
+    clearInterval(start);
 
-function restartTimer() 
-{  
-  
-  time = 29;
+    document.getElementById("start_button").style.visibility = "hidden";
+    document.getElementById("clock_text").innerText = 30;
 
-  clearInterval(start);
+    start = setInterval(updateClock, 1000);
+  }
+  function pauseTimer() 
+  {
+    document.getElementById("start_button").style.visibility = "visible";
 
-  document.getElementById("start_button").style.visibility = "hidden";
-  document.getElementById("clock_text").innerText = 30;
-
-  start = setInterval(updateClock, 1000);
-}
-
-function pauseTimer() 
-{
-  document.getElementById("start_button").style.visibility = "visible";
-
-  clearInterval(start);
-}
-function updateClock() 
+    clearInterval(start);
+  }
+  function updateClock() 
 { 
   //Change timer text
   document.getElementById("clock_text").innerText = time;
@@ -105,4 +119,4 @@ function updateClock()
 
   }
 }
-</script>
+</script> 

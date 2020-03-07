@@ -3,4 +3,13 @@ body {
 }
 #clock_text {
     font-size: 325px;
+    padding: 0px;
+    line-height: 0.8;
+}
+#matchlength_text {
+    font-size: 100px;   
+    display: block;
+}
+#restart_button {
+    visibility: hidden;
 }
