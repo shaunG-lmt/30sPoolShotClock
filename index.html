@@ -27,7 +27,7 @@
     <!--Title ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <h1>30 Second Pool Shot Clock</h1>
 
-    <!--Timer Display ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <!--Countdown Display ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row">
       <p id="clock_text">30<p>
     </div>
@@ -39,15 +39,15 @@
     
     <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row">
-      <a id="start_button" class="button" href="javascript:startTimer()">start</a>
-      <a id="start_button" class="button" href="javascript:pauseTimer()">pause</a>
-      <a id="restart_button" class="button" href="javascript:restartTimer()">restart shotclock</a>
+      <a id="start_button" class="button" href="javascript:startGame()">start</a>
+      <a id="pause_button" class="button" href="javascript:pauseGame()">pause</a>
+      <a id="restart_button" class="button" href="javascript:restartCountdown()">restart shotclock</a>
     </div>
     
 
     <!--Match Length Input ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row" id="matchlength_container">
-      Match Length: <input type="number" placeholder="Min(s)">
+      Match Length: <input id="matchlength_input" type="number" placeholder="Min(s)">
     </div>    
 
     <audio id="warning_audio">
@@ -62,7 +62,7 @@
   var start;
   var time = 29;
 
-  function startTimer()
+  function startGame()
   {
     document.getElementById("start_button").style.visibility = "hidden";
     document.getElementById("matchlength_container").style.visibility = "hidden";
@@ -70,7 +70,7 @@
     
     start = setInterval(updateClock, 1000);
   } 
-  function restartTimer() 
+  function restartCountdown() 
   {  
     
     time = 29;
@@ -82,41 +82,41 @@
 
     start = setInterval(updateClock, 1000);
   }
-  function pauseTimer() 
+  function pauseGame() 
   {
     document.getElementById("start_button").style.visibility = "visible";
 
     clearInterval(start);
   }
   function updateClock() 
-{ 
-  //Change timer text
-  document.getElementById("clock_text").innerText = time;
-  
-  //Sound effect to be played at every second under 6
-  if(time < 6)
-  {
-    if(time == 0)
-    {
-      document.getElementById("foul_audio").play();
-    }
-    else
-    {
-      document.getElementById("warning_audio").play();
-    }
-  }
-  //Decrease time
-  time--;
-
-  //Stop at 0 
-  if(time == -1)
-  {
-    //Stop current countdown
-    clearInterval(start);
+  { 
+    //Change Countdown text
+    document.getElementById("clock_text").innerText = time;
     
-    //Reset timer to 30 after a 1.5 second wait
-    setTimeout( function() { document.getElementById("clock_text").innerText = 30  }, 1500);
+    //Sound effect to be played at every second under 6
+    if(time < 6)
+    {
+      if(time == 0)
+      {
+        document.getElementById("foul_audio").play();
+      }
+      else
+      {
+        document.getElementById("warning_audio").play();
+      }
+    }
+    //Decrease time
+    time--;
 
+    //Stop at 0 
+    if(time == -1)
+    {
+      //Stop current countdown
+      clearInterval(start);
+      
+      //Reset Countdown to 30 after a 1.5 second wait
+      setTimeout( function() { document.getElementById("clock_text").innerText = 30  }, 1500);
+
+    }
   }
-}
 </script> 
