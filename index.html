@@ -68,7 +68,7 @@
     document.getElementById("matchlength_container").style.display = "none";
     document.getElementById("restart_button").style.visibility = "visible";
     
-    start = setInterval(updateClock, 1000);
+    start = setInterval(updateCountdown, 1000);
   } 
   function restartCountdown() 
   {  
@@ -80,7 +80,7 @@
     document.getElementById("start_button").style.visibility = "hidden";
     document.getElementById("countdown_display").innerText = 30;
 
-    start = setInterval(updateClock, 1000);
+    start = setInterval(updateCountdown, 1000);
   }
   function pauseGame() 
   {
@@ -88,7 +88,7 @@
 
     clearInterval(start);
   }
-  function updateClock() 
+  function updateCountdown() 
   { 
     //Change Countdown text
     document.getElementById("countdown_display").innerText = time;
@@ -119,4 +119,5 @@
 
     }
   }
+  function up
 </script> 
