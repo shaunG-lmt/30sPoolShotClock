@@ -1,15 +1,19 @@
 body {
     text-align: center;
 }
-#clock_text {
+#countdown_display{
     font-size: 325px;
     padding: 0px;
     line-height: 0.8;
 }
-#matchlength_text {
+#matchlength_display {
     font-size: 100px;   
     display: block;
 }
 #restart_button {
     visibility: hidden;
+}
+#matchlength_input {
+    margin-right: 10px;
+    width: 250px;
 }

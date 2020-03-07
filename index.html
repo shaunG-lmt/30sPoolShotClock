@@ -29,12 +29,12 @@
 
     <!--Countdown Display ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row">
-      <p id="clock_text">30<p>
+      <p id="countdown_display">30<p>
     </div>
 
     <!--Match Length Input ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row">
-      <h1 id="matchlength_text">00:00:00</h1>
+      <h1 id="matchlength_display">00:00:00</h1>
     </div>
     
     <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
@@ -47,7 +47,7 @@
 
     <!--Match Length Input ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row" id="matchlength_container">
-      Match Length: <input id="matchlength_input" type="number" placeholder="Min(s)">
+      Match Length: <input id="matchlength_input" type="number" placeholder="Min(s) | Leave blank for none">
     </div>    
 
     <audio id="warning_audio">
@@ -78,7 +78,7 @@
     clearInterval(start);
 
     document.getElementById("start_button").style.visibility = "hidden";
-    document.getElementById("clock_text").innerText = 30;
+    document.getElementById("countdown_display").innerText = 30;
 
     start = setInterval(updateClock, 1000);
   }
@@ -91,7 +91,7 @@
   function updateClock() 
   { 
     //Change Countdown text
-    document.getElementById("clock_text").innerText = time;
+    document.getElementById("countdown_display").innerText = time;
     
     //Sound effect to be played at every second under 6
     if(time < 6)
@@ -115,7 +115,7 @@
       clearInterval(start);
       
       //Reset Countdown to 30 after a 1.5 second wait
-      setTimeout( function() { document.getElementById("clock_text").innerText = 30  }, 1500);
+      setTimeout( function() { document.getElementById("countdown_display").innerText = 30;  }, 1500);
 
     }
   }
