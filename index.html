@@ -59,7 +59,7 @@
   </body>
 </html> 
 <script>
-  var start;
+  var startCountdown;
   var time = 29;
 
   function startGame()
@@ -68,25 +68,25 @@
     document.getElementById("matchlength_container").style.display = "none";
     document.getElementById("restart_button").style.visibility = "visible";
     
-    start = setInterval(updateCountdown, 1000);
+    startCountdown = setInterval(updateCountdown, 1000);
   } 
   function restartCountdown() 
   {  
     
     time = 29;
 
-    clearInterval(start);
+    clearInterval(startCountdown);
 
     document.getElementById("start_button").style.visibility = "hidden";
     document.getElementById("countdown_display").innerText = 30;
 
-    start = setInterval(updateCountdown, 1000);
+    startCountdown = setInterval(updateCountdown, 1000);
   }
   function pauseGame() 
   {
     document.getElementById("start_button").style.visibility = "visible";
 
-    clearInterval(start);
+    clearInterval(startCountdown);
   }
   function updateCountdown() 
   { 
@@ -112,12 +112,15 @@
     if(time == -1)
     {
       //Stop current countdown
-      clearInterval(start);
+      clearInterval(startCountdown);
       
       //Reset Countdown to 30 after a 1.5 second wait
       setTimeout( function() { document.getElementById("countdown_display").innerText = 30;  }, 1500);
 
     }
   }
-  function up
+  function updateMatchLength() 
+  {
+
+  }
 </script> 
