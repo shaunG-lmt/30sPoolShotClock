@@ -60,7 +60,7 @@
 </html> 
 <script>
   var startCountdown;
-  var time = 29;
+  var countdownTime = 29;
 
   function startGame()
   {
@@ -73,7 +73,7 @@
   function restartCountdown() 
   {  
     
-    time = 29;
+    countdownTime = 29;
 
     clearInterval(startCountdown);
 
@@ -91,12 +91,12 @@
   function updateCountdown() 
   { 
     //Change Countdown text
-    document.getElementById("countdown_display").innerText = time;
+    document.getElementById("countdown_display").innerText = countdownTime;
     
     //Sound effect to be played at every second under 6
-    if(time < 6)
+    if(countdownTime < 6)
     {
-      if(time == 0)
+      if(countdownTime == 0)
       {
         document.getElementById("foul_audio").play();
       }
@@ -105,11 +105,11 @@
         document.getElementById("warning_audio").play();
       }
     }
-    //Decrease time
-    time--;
+    //Decrease shot clock time
+    countdownTime--;
 
     //Stop at 0 
-    if(time == -1)
+    if(countdownTime == -1)
     {
       //Stop current countdown
       clearInterval(startCountdown);
@@ -121,6 +121,6 @@
   }
   function updateMatchLength() 
   {
-
+    
   }
 </script> 
