@@ -197,7 +197,13 @@
       // Check Hour
       if(time[1].toString() == "00") {
         time[1] = "59";
-        time[0]--;
+        
+        if(time[0] == "00") {
+          // Do Nothing.
+        }
+        else {
+          time[0]--;
+        }
       }
       else {
         // Minute -1
