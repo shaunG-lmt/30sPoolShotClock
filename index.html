@@ -32,7 +32,7 @@
       <p id="countdown_display">30<p>
     </div>
 
-    <!--Match Length Input ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <!--Match Length Display ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row">
       <h1 id="matchlength_display">00:00:00</h1>
     </div>
@@ -60,16 +60,33 @@
 </html> 
 <script>
   var startCountdown;
+  var startMatchTimer;
   var countdownTime = 29;
-
+  var input;
   function startGame()
   {
+    // Button handling
     document.getElementById("start_button").style.visibility = "hidden";
-    document.getElementById("matchlength_container").style.display = "none";
     document.getElementById("restart_button").style.visibility = "visible";
-    
+
+    // Match length handling
+    input = document.getElementById("matchlength_input").value;
+    console.log(input);
+
+    if (input === "") 
+    {
+      document.getElementById("matchlength_container").style.display = "none";
+    }
+    else 
+    {
+      getMatchLengthInput();
+      startMatchTimer = setInterval(updateMatchLength, 1000)
+    }
+
+    // Start shotclock
     startCountdown = setInterval(updateCountdown, 1000);
-  } 
+  }
+
   function restartCountdown() 
   {  
     
@@ -82,12 +99,14 @@
 
     startCountdown = setInterval(updateCountdown, 1000);
   }
+  // TODO: pause match length time
   function pauseGame() 
   {
     document.getElementById("start_button").style.visibility = "visible";
 
     clearInterval(startCountdown);
   }
+  
   function updateCountdown() 
   { 
     //Change Countdown text
@@ -119,8 +138,80 @@
 
     }
   }
+
+  var matchlength_text = "";
+  var hour;
+  var min;
+  var sec = String(59);
+  var time;
+  
+  function getMatchLengthInput() {
+    // Get h/m from input
+    hour = String(Math.floor(input/60));
+    min = String(input % 60)-1;
+
+    if(min == "-1") {
+      min = "59";
+      hour = hour - 1;
+    }
+
+    time = [hour,min,sec];
+    formatMatchLengthText(time);
+  }
+
+  var i;
+  function formatMatchLengthText(time) {
+    for(i = 0; i < time.length; i++) {
+      if(time[i].toString().startsWith("0") == true){
+        
+        // Formatting for 0
+        if(time[i] == "0") {
+          time[i] = formatNumber(time[i]);  
+        }
+        else {
+        // Do Nothing
+        }
+      }
+      else if(time[i] < 10){
+        // Format Numbers under ten with 0
+        time[i] = formatNumber(time[i]);
+      }
+    }
+    return time;
+    
+    function formatNumber(x) {
+      x = "0" + x;
+      return x;
+    }
+  }
+
   function updateMatchLength() 
   {
+    // HH : MM : SS
+    matchlength_text = time[0] + ":" + time[1] + ":" + time[2];
+    document.getElementById("matchlength_display").innerText = matchlength_text;
     
+    // Check Minute
+    if(time[2].toString() == "00") {
+      
+      // Check Hour
+      if(time[1].toString() == "00") {
+        time[1] = "59";
+        time[0]--;
+      }
+      else {
+        // Minute -1
+        time[1]--;
+      }
+
+      // Reset seconds
+      time[2] = "59";
+
+    }
+    else {
+      time[2]--;
+    }
+    
+    formatMatchLengthText(time);
   }
-</script> 
+</script>
