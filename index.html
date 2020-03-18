@@ -63,6 +63,8 @@
   var startMatchTimer;
   var countdownTime = 29;
   var input;
+  var matchStarted = false;
+
   function startGame()
   {
     // Button handling
@@ -71,17 +73,21 @@
 
     // Match length handling
     input = document.getElementById("matchlength_input").value;
-    console.log(input);
 
     if (input === "") 
     {
       document.getElementById("matchlength_container").style.display = "none";
-    }
-    else 
+
+    } else if (matchStarted == false)
     {
+      matchStarted = true;
       getMatchLengthInput();
       startMatchTimer = setInterval(updateMatchLength, 1000);
       document.getElementById("matchlength_container").style.display = "none";
+
+    } else 
+    {
+      startMatchTimer = setInterval(updateMatchLength, 1000);
     }
 
     // Start shotclock
@@ -144,7 +150,7 @@
   var matchlength_text = "";
   var hour;
   var min;
-  var sec = String(59);
+  var sec = "59";
   var time;
   
   function getMatchLengthInput() {
