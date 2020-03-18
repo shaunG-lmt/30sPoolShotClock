@@ -1,0 +1,1 @@
+Change restart button on load to opacity: 50% and js disabled until game start.

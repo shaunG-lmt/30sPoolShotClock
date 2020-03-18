@@ -31,31 +31,38 @@
     <div class="row">
       <p id="countdown_display">30<p>
     </div>
-
-    <!--Match Length Display ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-    <div class="row">
-      <h1 id="matchlength_display">00:00:00</h1>
-    </div>
     
-    <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-    <div class="row">
-      <a id="start_button" class="button" href="javascript:startGame()">start</a>
-      <a id="pause_button" class="button" href="javascript:pauseGame()">pause</a>
-      <a id="restart_button" class="button" href="javascript:restartCountdown()">restart shotclock</a>
-    </div>
-    
-
-    <!--Match Length Input ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-    <div class="row" id="matchlength_container">
-      Match Length: <input id="matchlength_input" type="number" placeholder="Min(s) | Leave blank for none">
-    </div>    
-
+    <!-- Countdown Audio -->
     <audio id="warning_audio">
       <source src="audio/warning.mp3" type="audio/mp3">
     </audio>
     <audio id="foul_audio">
         <source src="audio/foul.mp3" type="audio/mp3">
-      </audio>
+    </audio>
+
+    <!--Match Length Display -->
+    <div class="row">
+      <h1 id="matchlength_display">00:00:00</h1>
+    </div>
+    
+    <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <div class="row" id="controls">
+      <!-- Match Controls -->
+      <a id="start_button" class="button" href="javascript:startGame()">start</a>
+      <a id="pause_button" class="button" href="javascript:pauseGame()">pause</a>
+      <a id="restart_button" class="button" href="javascript:restartCountdown()">restart shotclock</a>
+      <br>
+      <!--Match Length Input -->
+      Match Length: <input id="matchlength_input" type="number" placeholder="Min(s) | Leave blank for none">
+      <br>  
+      <!-- Score Player Names Input -->
+      Enter Player Names: 
+      <br>
+      <input class="player-input" id="player-one-input" type="text" placeholder="Player 1"> 
+      VS 
+      <input class="player-input" id="player-two-input" type="text" placeholder="Player 2">
+    </div>  
+    
   </body>
 </html> 
 <script>
