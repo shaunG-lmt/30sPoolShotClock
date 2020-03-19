@@ -41,7 +41,7 @@
     </audio>
 
     <!--Match Length Display -->
-    <div class="row">
+    <div class="row" id="matchlength_container">
       <h1 id="matchlength_display">00:00:00</h1>
     </div>
 
@@ -49,7 +49,7 @@
     <div id="scoreboard" class="row">
       <span id="P1-name" class="P-name">TEST NAME</span><span id="P1-score">1</span> 
         VS  
-        <span id="P2-score">1</span><span id="P2-name" class="P-name">TEST NAME</span>
+      <span id="P2-score">1</span><span id="P2-name" class="P-name">TEST NAME </span>
     </div>
     <!--Controls ––––––––––––––––––––––––––––––––––––––––––––––––––-->
     <div class="row" id="controls">
@@ -64,9 +64,9 @@
       <!-- Player Names Input -->
       Enter Player Names: 
       <br>
-      <input class="player-input" id="player-one-input" type="text" placeholder="Player 1"> 
+      <input id="player_one_input" class="player-input"  type="text" placeholder="Player 1"> 
       VS 
-      <input class="player-input" id="player-two-input" type="text" placeholder="Player 2">
+      <input class="player-input" id="player_two_input" type="text" placeholder="Player 2">
     </div>  
     
   </body>
@@ -74,8 +74,12 @@
 <script>
   var startCountdown;
   var startMatchTimer;
+  
   var countdownTime = 29;
+
   var input;
+  var player1Input;
+  var player2Input;
   function startGame()
   {
     // Button handling
@@ -84,7 +88,6 @@
 
     // Match length handling
     input = document.getElementById("matchlength_input").value;
-    console.log(input);
 
     if (input === "") 
     {
@@ -94,8 +97,14 @@
     {
       getMatchLengthInput();
       startMatchTimer = setInterval(updateMatchLength, 1000);
-      document.getElementById("matchlength_container").style.display = "none";
     }
+    
+    // Player name handling
+    player1Input = document.getElementById("player_one_input").value;
+    player2Input = document.getElementById("player_two_input").value;
+    
+    document.getElementById("P1-name").innerText = player1Input;
+    document.getElementById("P2-name").innerText = player2Input;
 
     // Start shotclock
     startCountdown = setInterval(updateCountdown, 1000);
