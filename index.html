@@ -80,7 +80,8 @@
     else 
     {
       getMatchLengthInput();
-      startMatchTimer = setInterval(updateMatchLength, 1000)
+      startMatchTimer = setInterval(updateMatchLength, 1000);
+      document.getElementById("matchlength_container").style.display = "none";
     }
 
     // Start shotclock
