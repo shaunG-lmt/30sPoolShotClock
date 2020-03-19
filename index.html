@@ -67,16 +67,23 @@
 
   function startGame()
   {
-    // Button handling
+    matchPaused = false;
+    
+    
     document.getElementById("start_button").style.visibility = "hidden";
     document.getElementById("restart_button").style.visibility = "visible";
+    document.getElementById("restart_button").innerHTML = "restart shotclock";
 
-    // Match length handling
+    // Fetch user input for match length
     input = document.getElementById("matchlength_input").value;
 
+    document.getElementById("start_button").innerHTML = "resume";
+
+    // Match length handling
     if (input === "") 
     {
       document.getElementById("matchlength_container").style.display = "none";
+      document.getElementById("matchlength_display").style.visibility = "hidden";
 
     } else if (matchStarted == false)
     {
@@ -84,12 +91,13 @@
       getMatchLengthInput();
       startMatchTimer = setInterval(updateMatchLength, 1000);
       document.getElementById("matchlength_container").style.display = "none";
+      
 
     } else 
     {
       startMatchTimer = setInterval(updateMatchLength, 1000);
     }
-
+    
     // Start shotclock
     startCountdown = setInterval(updateCountdown, 1000);
   }
@@ -98,18 +106,25 @@
   {  
     
     countdownTime = 29;
-
     clearInterval(startCountdown);
-
-    document.getElementById("start_button").style.visibility = "hidden";
     document.getElementById("countdown_display").innerText = 30;
 
-    startCountdown = setInterval(updateCountdown, 1000);
+   
+
+    if (matchPaused == false) 
+    {
+      startCountdown = setInterval(updateCountdown, 1000);
+      
+    }
   }
-  // TODO: pause match length time
+
+  var matchPaused;
   function pauseGame() 
   {
+    matchPaused = true;
+    
     document.getElementById("start_button").style.visibility = "visible";
+    document.getElementById("restart_button").innerHTML = "reset shotclock"
 
     clearInterval(startCountdown);
     clearInterval(startMatchTimer);
